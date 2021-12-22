@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Table, Form, Button } from "react-bootstrap";
+import { Card, Table, Form, Button, InputGroup } from "react-bootstrap";
 
 import "./StockEntry.css";
 
@@ -62,31 +62,43 @@ const StockEntry = () => {
         </Card.Header>
         <Card.Body>
           <div className="entry-form">
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="new quantity"
-              value={newQuantity}
-              onChange={({ target }) => {
-                console.log(target, target.value);
-                const { value } = target;
-                setNewQuantity(value);
-              }}
-            />
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="new price"
-              value={newPrice}
-              onChange={({ target }) => {
-                console.log(target, target.value);
-                const { value } = target;
-                setNewPrice(value);
-              }}
-            />
-            <Button variant="primary" type="submit" onClick={AddEntry}>
-              Add
-            </Button>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="new-quantity">Quantity</InputGroup.Text>
+              <Form.Control
+                size="lg"
+                type="text"
+                aria-label="new quantity"
+                aria-describedby="new-quantity"
+                placeholder=""
+                value={newQuantity}
+                onChange={({ target }) => {
+                  console.log(target, target.value);
+                  const { value } = target;
+                  setNewQuantity(value);
+                }}
+              />
+            </InputGroup>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="new-quantity">Price</InputGroup.Text>
+              <Form.Control
+                size="lg"
+                type="text"
+                aria-label="new price"
+                aria-describedby="new-price"
+                placeholder=""
+                value={newPrice}
+                onChange={({ target }) => {
+                  console.log(target, target.value);
+                  const { value } = target;
+                  setNewPrice(value);
+                }}
+              />
+            </InputGroup>
+            <InputGroup className="mb-1">
+              <Button variant="primary" type="submit" onClick={AddEntry}>
+                Add
+              </Button>
+            </InputGroup>
           </div>
           <Table striped bordered hover>
             <thead>

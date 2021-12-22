@@ -1,9 +1,13 @@
 .entry-form {
   display: flex;
   margin-bottom: 32px;
+  justify-content: space-around;
 }
 
 .entry-form .btn {
-  margin-left: 20px;
+  margin-left: 2px;
   padding: 0px 50px;
+}
+.entry-form .input-group {
+  width: auto;
 }
