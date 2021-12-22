@@ -94,7 +94,7 @@ const StockEntry = () => {
                 }}
               />
             </InputGroup>
-            <InputGroup className="mb-1">
+            <InputGroup className="mb-3">
               <Button variant="primary" type="submit" onClick={AddEntry}>
                 Add
               </Button>
