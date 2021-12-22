@@ -1,0 +1,9 @@
+.entry-form {
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.entry-form .btn {
+  margin-left: 20px;
+  padding: 0px 50px;
+}
