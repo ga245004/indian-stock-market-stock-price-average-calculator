@@ -7,19 +7,26 @@ const AddEntry = ({ setEntry }) => {
   const [newPrice, setNewPrice] = useState("");
 
   const onChangeQuantity = ({ target }) => {
-    console.log(target, target.value);
-    const { value } = target;
-    setNewQuantity(value);
+    let { value } = target;
+    value = parseInt(value, 10);
+    if (!isNaN(value)) {
+      setNewQuantity(value);
+    }
   };
 
   const onChangePrice = ({ target }) => {
-    console.log(target, target.value);
-    const { value } = target;
-    setNewPrice(value);
+    let { value } = target;
+    let isDecimal = value.endsWith(".");
+    value = parseFloat(value);
+    if (!isNaN(value)) {
+      if (isDecimal) {
+        value = value + ".";
+      }
+      setNewPrice(value);
+    }
   };
 
   const AddEntry = () => {
-    console.log("add", newQuantity, newPrice);
     if (newQuantity && newPrice) {
       const newEntry = {
         quantity: newQuantity,

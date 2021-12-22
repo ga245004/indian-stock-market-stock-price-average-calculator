@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Table, Form, Button, InputGroup } from "react-bootstrap";
+import { Card, Table, Button } from "react-bootstrap";
 
 import AddEntry from "../AddEntry/AddEntry";
 import "./StockEntry.css";
@@ -35,7 +35,7 @@ const StockEntry = () => {
         averagePrice = price * 1;
       }
     });
-    console.log("average", averagePrice, totalQuantity);
+
     setTotalQuantity(totalQuantity);
     setAveragePrice(averagePrice);
   }, [entries]);
@@ -73,7 +73,7 @@ const StockEntry = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>S.No.</th>
+                <th className="sNo">S.No.</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Total</th>
@@ -82,7 +82,7 @@ const StockEntry = () => {
             <tbody>
               {entries.map(({ quantity, price }, index) => (
                 <tr key={(quantity = "_" + index)}>
-                  <td>{index + 1}</td>
+                  <td className="sNo">{index + 1}</td>
                   <td>{quantity}</td>
                   <td>{price}</td>
                   <td>{getTotal({ quantity, price })}</td>
