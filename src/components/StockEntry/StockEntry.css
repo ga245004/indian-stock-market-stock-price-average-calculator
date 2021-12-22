@@ -1,13 +1,8 @@
-.entry-form {
-  display: flex;
-  margin-bottom: 32px;
-  justify-content: space-around;
+.card {
+  margin: 0px 24px 24px 24px;
 }
 
-.entry-form .btn {
-  margin-left: 2px;
-  padding: 0px 50px;
-}
-.entry-form .input-group {
-  width: auto;
+.header {
+  display: flex;
+  justify-content: space-between;
 }

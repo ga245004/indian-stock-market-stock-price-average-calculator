@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Card, Table, Form, Button, InputGroup } from "react-bootstrap";
 
+import AddEntry from "../AddEntry/AddEntry";
 import "./StockEntry.css";
 
 const StockEntry = () => {
-  const [newQuantity, setNewQuantity] = useState("");
-  const [newPrice, setNewPrice] = useState("");
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [averagePrice, setAveragePrice] = useState(0.0);
 
@@ -15,17 +14,9 @@ const StockEntry = () => {
     return quantity * price;
   };
 
-  const AddEntry = () => {
-    console.log("add", newQuantity, newPrice);
-    if (newQuantity && newPrice) {
-      const newEntries = [
-        {
-          quantity: newQuantity,
-          price: newPrice
-        }
-      ];
-      setEntries(newEntries.concat(entries));
-    }
+  const SetEntry = (entry) => {
+    const newEntries = [entry];
+    setEntries(newEntries.concat(entries));
   };
 
   useEffect(() => {
@@ -53,53 +44,32 @@ const StockEntry = () => {
     <>
       <Card>
         <Card.Header>
-          <h3>Average Price = {averagePrice}</h3>
-          <h6>Total Quantity = {totalQuantity}</h6>
-          <h6>
-            Total Investment ={" "}
-            {getTotal({ quantity: totalQuantity, price: averagePrice })}
-          </h6>
+          <div className="header">
+            <div className="header-labels">
+              <h3>Average Price = {averagePrice}</h3>
+              <h6>Total Quantity = {totalQuantity}</h6>
+              <h6>
+                Total Investment ={" "}
+                {getTotal({ quantity: totalQuantity, price: averagePrice })}
+              </h6>
+            </div>
+            <div className="header-actions">
+              {entries.length > 0 && (
+                <Button
+                  variant="primary"
+                  type="button"
+                  onClick={() => {
+                    setEntries([]);
+                  }}
+                >
+                  Clear
+                </Button>
+              )}
+            </div>
+          </div>
         </Card.Header>
         <Card.Body>
-          <div className="entry-form">
-            <InputGroup className="mb-3">
-              <InputGroup.Text id="new-quantity">Quantity</InputGroup.Text>
-              <Form.Control
-                size="lg"
-                type="text"
-                aria-label="new quantity"
-                aria-describedby="new-quantity"
-                placeholder=""
-                value={newQuantity}
-                onChange={({ target }) => {
-                  console.log(target, target.value);
-                  const { value } = target;
-                  setNewQuantity(value);
-                }}
-              />
-            </InputGroup>
-            <InputGroup className="mb-3">
-              <InputGroup.Text id="new-quantity">Price</InputGroup.Text>
-              <Form.Control
-                size="lg"
-                type="text"
-                aria-label="new price"
-                aria-describedby="new-price"
-                placeholder=""
-                value={newPrice}
-                onChange={({ target }) => {
-                  console.log(target, target.value);
-                  const { value } = target;
-                  setNewPrice(value);
-                }}
-              />
-            </InputGroup>
-            <InputGroup className="mb-3">
-              <Button variant="primary" type="submit" onClick={AddEntry}>
-                Add
-              </Button>
-            </InputGroup>
-          </div>
+          <AddEntry setEntry={SetEntry} />
           <Table striped bordered hover>
             <thead>
               <tr>
